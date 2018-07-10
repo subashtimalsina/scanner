@@ -1,0 +1,140 @@
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="myModal" style="position: absolute; top: 50%; z-index:999; left: 50%; width: 100%; text-align: center; -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);" aria-hidden="true">
+	<div class="closeqr" onclick="closeqr()"></div>
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="titleqr">PDF Signature</div>
+			<div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+			<div id="wrapper">
+				<div id="contentBox">
+					<div class="content content-wrapper">
+						<form name="agreement-form" id="agreement-form" class="form-agreement" method="post">
+							<div class="data-wrap">
+								<div class="checkbox">
+									<p><b>I agree to</b></p>
+									<div>
+										<input type="checkbox" name="checkbox1" id="checkbox1">
+										<label class="">Exercise at my own risk</label>
+									</div>
+									<div>
+										<input type="checkbox" name="checkbox2" id="checkbox2">
+										<label class="">Clean the yoga matt</label>
+									</div>
+								</div>
+								<div class="row">
+									<input type="text" class="imageurl" name="imageurl" placeholder="Image Url" style="width:280px">
+								</div>
+								<div class="row">
+									<input type="text" placeholder="User Input" class="testuserdata" name="testuserdata" style="width:280px">
+								</div>
+								<div class="row form-closer">
+									<div id="signature-pad" class="m-signature-pad">
+										<label class="cross_label fullwidth span_pad sign_mutual">Signature</label>
+										<div class="m-signature-pad--body">
+											<canvas style="border: 1px solid #000;width:100%;max-width:305px;height:200px!important;"></canvas>
+										</div>
+									</div>
+									<div class="two-column left lft_prt">
+										<input type="hidden" name="agent_signa" id="agent_signa" value=""/>
+									</div>
+								</div>
+								<div class="pdfsubmit" style="clear:both">
+									<div class="sending"></div>
+									<input type="button" name="mutual_agreement_submit" id="replace" value="Submit" class="input_submit btn btn-primary"/>
+								</div>
+							</div>
+						</form>
+					</div>
+					<br class="clearFloat"/>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		var w = document.getElementById("signature-pad");
+		var c = w.querySelector("canvas");
+		var b = document.getElementById("replace");
+
+		function resizeCanvas(canvas)
+		{
+			var ratio = window.devicePixelRatio || 1;
+			canvas.width = canvas.offsetWidth * ratio;
+			canvas.height = canvas.offsetHeight * ratio;
+			canvas.getContext("2d").scale(ratio, ratio);
+		}
+
+		resizeCanvas(c);
+
+		console.log("devicePixelRatio: " + window.devicePixelRatio);
+
+		var data;
+		var signaturePad = new SignaturePad(c);
+
+		b.onclick = function()
+		{
+			jQuery(".sending").html("Sending....");
+			var imageurl = jQuery(".imageurl").val();
+			var testuserdata = jQuery(".testuserdata").val();
+			var checkbox1 = jQuery("#checkbox1").is(":checked");
+			var checkbox2 = jQuery("#checkbox2").is(":checked");
+
+			if (checkbox1 == true)
+			{
+				var chk1 = "yes";
+			}
+			else
+			{
+				var chk1 = "no";
+			}
+
+			if (checkbox2 == true)
+			{
+				var chk2 = "yes";
+			}
+			else
+			{
+				var chk2 = "no";
+			}
+
+			data = signaturePad.toDataURL();
+
+			jQuery("#agent_signa").val(data);
+
+			setTimeout(function()
+			{
+				jQuery.ajax(
+				{
+					url: "http://devel.ntftechnologies.com/pdf_generator/pdf/index.php",
+					type: "post",
+					data: {
+						"agent_signa": data,
+						"checkbox1": chk1,
+						"checkbox2": chk2,
+						"imageurl": imageurl,
+						"testuserdata": testuserdata
+					}, success: function(result)
+					{
+						alert("Thank You. Email Sent Successfully.");
+
+						jQuery("#myModal").remove();
+						jQuery("body").removeClass("qrCode");
+
+						signaturePad.clear();
+
+						var pdfisview = "<iframe src=http://devel.ntftechnologies.com/pdf_generator/generated_forms/" +
+							result + " style=height:500px; frameborder=0></iframe>";
+
+						jQuery("body").append("<div class=pdfview></div>");
+					}
+				});
+			}, 500);
+		};
+	</script>
+	<script>
+		function closeqr()
+		{
+			jQuery("#myModal").remove();
+			jQuery("body").removeClass("qrCode");
+		}
+	</script>
+</div>

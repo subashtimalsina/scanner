@@ -1,0 +1,47 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": ""
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": ""
+    },
+    "cordova-plugin-disable-ios11-statusbar": {
+      "PACKAGE_NAME": ""
+    },
+    "cordova-plugin-iosrtc": {
+      "PACKAGE_NAME": ""
+    },
+    "cordova-plugin-qrscanner": {
+      "PACKAGE_NAME": ""
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": ""
+    },
+    "cordova-plugin-viewport": {
+      "PACKAGE_NAME": ""
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": ""
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": ""
+    },
+    "phonegap-plugin-barcodescanner": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.1.1",
+      "PACKAGE_NAME": ""
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": ""
+    }
+  }
+}

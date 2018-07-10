@@ -1,0 +1,68 @@
+.ui-widget-header.ui-corner-tl.ui-corner-tr {
+	padding-bottom: 25px;
+}
+
+.ui-widget-header.ui-corner-bl.ui-corner-br {
+	padding-bottom: 50px;
+}
+
+td {
+    max-width: 1px; 
+/*     min-width: 3px; */
+    overflow: hidden;
+/*     text-overflow: ellipsis; */
+	font-size: 16px;
+    white-space: nowrap;
+   
+ 	padding-bottom: 0px !important;
+	padding-left: 0px !important; 
+	padding-right: 0px !important;
+	padding-top: 0px !important;
+
+}
+
+th {
+    max-width: 1px;  
+/*     min-width: 3px; */
+    overflow: hidden;
+/*     text-overflow: ellipsis; */
+    font-size: 16px;
+ 	padding-bottom: 0px !important;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	padding-top: 0px !important;
+
+/*     white-space: normal !important; */
+/* 	word-break:break-all; */
+/*     word-wrap: break-word !important; */
+}
+
+
+.dataTables_scrollBody {
+	
+	overflow-y: scroll !important;
+	background-color: white;
+}
+
+.dtr-inline  th {
+   max-width: 170px  !important;
+}
+.dtr-inline  td {
+	max-width: 170px  !important;
+	
+}
+
+.dtr-inline  tr>td:first-child {
+	padding-left: 27px !important; 
+	padding-right: 4px !important; 
+	
+}
+
+
+
+
+	
+/* .dataTables_scroll {
+    overflow-x: auto;
+    overflow-y: visible;
+} */

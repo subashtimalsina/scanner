@@ -1,0 +1,10 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "WellnessXperts Cafe Smarthub",
+  "short_name": "WellnessXperts Cafe Smarthub",
+  "description": "Wizworks Smarthub App",
+  "author": "WellnessXperts",
+  "icons": [],
+  "start_url": "index.html"
+}
